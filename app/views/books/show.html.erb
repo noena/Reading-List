@@ -1,0 +1,45 @@
+<h1>Here's Your Book</h1>
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author %>
+</p>
+
+<h2>Bookmarks</h2>
+<% @book.bookmarks.each do |bookmark| %>
+<p>
+  <strong>Page Number</strong>
+  <%= bookmark.page_number %>
+</p>
+<p>
+  <strong>Description</strong>
+  <%= bookmark.description %>
+</p>
+
+<% end %>
+
+<h2>Add a bookmark:</h2>
+<%= form_with(model: [@book, @book.bookmarks.build], local: true) do |form| %>
+  <p>
+    <%= form.label :page_number %>
+    <%= form.text_field :page_number %>
+  </p>
+  <p>
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+  <% end %>
+  <li>
+    <%= link_to 'Edit', edit_book_path(@book) %>
+  </li>
+  <li>
+    <%= link_to 'Back', books_path %>
+  </li>
+  <%= render 'devise/menu/login_items' %>

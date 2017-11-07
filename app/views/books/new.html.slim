@@ -1,0 +1,15 @@
+h1 New Book
+
+= simple_form_for @book do |f|
+  - if @book.errors.any?
+    .error_explanation
+    h2 = "#{pluralize(@book.errors.count, "error")} prohibited this book title from being saved:"
+    ul
+      - @book.errors.each do |msg|
+        li = "Book #{msg} is already on the list."
+  p = f.input :title, placeholder: 'e.g. Harry Potter', error: ''
+  p = f.input :author, placeholder: 'e.g. JK Rowling', error: ''
+  p = f.button :submit
+
+li = link_to 'Back', books_path
+= render 'devise/menu/login_items'

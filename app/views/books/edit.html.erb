@@ -1,0 +1,39 @@
+<h1>Edit Book Details</h1>
+
+<%= simple_form_for @book do |f| %>
+
+  <% if @book.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@book.errors.count, "error") %>
+          prohibited this book title from being saved:
+        </h2>
+        <ul>
+          <% @book.errors.each do |msg| %>
+            <li>Book <%= msg %> is already on the list.</li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
+  <p>
+    <%= f.input :title %><br>
+  </p>
+
+  <p>
+    <%= f.input :author %><br>
+  </p>
+
+  <p>
+    Have you read this book?
+    <%= f.check_box :read_book, as: :boolean %>
+  </p>
+
+  <p>
+    <%= f.button :submit %>
+  </p>
+<% end %>
+<li>
+  <%= link_to 'Back', books_path %>
+  <%= render 'devise/menu/login_items' %>
+</li>
